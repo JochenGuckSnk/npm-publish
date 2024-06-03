@@ -4,9 +4,11 @@ plugins {
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
-  versionCatalogs {
-    create("libs") {
-      from(files("../gradle/libs.versions.toml"))
+  if (System.getenv("CI") == null) {
+    versionCatalogs {
+      create("libs") {
+        from(files("../gradle/libs.versions.toml"))
+      }
     }
   }
   repositories {
